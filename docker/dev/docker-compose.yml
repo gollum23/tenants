@@ -1,0 +1,31 @@
+version: '2'
+services:
+  # tenant
+  tenant:
+    image: gollum23/multitenant-dev
+    volumes:
+      - ../../project:/app/project
+    ports:
+      - "8000:8000"
+    environment:
+      - TERM=xterm
+    networks:
+      tenant:
+        aliases:
+          - gollum23-tenant
+  # postgresql
+  postgresql-tenant:
+    image: postgres
+    container_name: gollum23-tenant-postgresql
+    environment:
+      - POSTGRES_PASSWORD=gollum23
+      - POSTGRES_DB=tenant
+    networks:
+      tenant:
+        aliases:
+          - gollum23-tenant-postgresql
+    volumes:
+      - /data/pgsql-tenant:/var/lib/postgresql/data
+networks:
+  tenant:
+    external: true
