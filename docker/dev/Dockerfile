@@ -1,4 +1,4 @@
-FROM platzi/python3-pycharm
+FROM python:3
 
 RUN mkdir /app/
 COPY common.txt /tmp/common.txt
