@@ -39,6 +39,7 @@ SHARED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
 )
 
 TENANT_APPS = (
@@ -51,7 +52,7 @@ TENANT_MODEL = "customers.Client"  # app.Model
 
 INSTALLED_APPS = list(set(TENANT_APPS + SHARED_APPS))
 
-MIDDLEWARE_CLASES = (
+MIDDLEWARE_CLASSES = (
     'tenant.middleware.TenantTutorialMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -99,6 +100,7 @@ DATABASES = {
     }
 }
 
+SITE_ID = 1
 
 DATABASE_ROUTERS = (
     'tenant_schemas.routers.TenantSyncRouter',
